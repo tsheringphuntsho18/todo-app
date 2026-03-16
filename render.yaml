@@ -39,4 +39,4 @@ services:
     startCommand: nginx -g "daemon off;"
     envVars:
       - key: REACT_APP_API_URL
-        value: https://be-todo.onrender.com
+        value: https://be-todo-02230310.onrender.com
