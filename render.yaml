@@ -4,29 +4,15 @@ services:
     env: docker
     dockerfilePath: ./backend/Dockerfile
     plan: free
-    buildCommand: npm install
-    startCommand: node server.js
     envVars:
       - key: DB_HOST
-        fromService:
-          name: postgres-db
-          type: pserv
-          property: host
+        value: dpg-d6rru57gi27c73coueb0-a.singapore.render.com
       - key: DB_USER
-        fromService:
-          name: postgres-db
-          type: pserv
-          property: username
+        value: tododb_v2jx_user
       - key: DB_PASSWORD
-        fromService:
-          name: postgres-db
-          type: pserv
-          property: password
+        value: 1y5Hf3KM63XI3Lqtk6KttGaFUt5gr53G
       - key: DB_NAME
-        fromService:
-          name: postgres-db
-          type: pserv
-          property: database
+        value: tododb_v2jx
       - key: PORT
         value: 5000
 
@@ -35,8 +21,6 @@ services:
     env: docker
     dockerfilePath: ./frontend/Dockerfile
     plan: free
-    buildCommand: npm run build
-    startCommand: nginx -g "daemon off;"
     envVars:
       - key: REACT_APP_API_URL
         value: https://be-todo-02230310.onrender.com
