@@ -70,7 +70,7 @@ function App() {
 
   return (
     <div className="app" style={{padding:"40px"}}>
-      <h1 className="app-title">To-Do App</h1>
+      <h1 className="app-title">My To-Do List </h1>
 
       <div className="input-row">
         <input
