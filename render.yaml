@@ -7,13 +7,13 @@ services:
     plan: free
     envVars:
       - key: DB_HOST
-        value: dpg-d6rru57gi27c73coueb0-a.singapore.render.com
+        value: dpg-d7gs7f28qa3s73coo00g-a.singapore.render.com
       - key: DB_USER
-        value: tododb_v2jx_user
+        value: todo_database_zy21_user
       - key: DB_PASSWORD
-        value: 1y5Hf3KM63XI3Lqtk6KttGaFUt5gr53G
+        value: tMrl3eg090abZ8jB5AT39fFsPHLCWzea
       - key: DB_NAME
-        value: tododb_v2jx
+        value: todo_database_zy21
       - key: PORT
         value: 5000
 
@@ -25,4 +25,4 @@ services:
     plan: free
     envVars:
       - key: REACT_APP_API_URL
-        value: https://be-todo-02230310.onrender.com
+        value: https://be-todo-02230310-1.onrender.com
