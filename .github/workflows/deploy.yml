@@ -1,0 +1,55 @@
+name: Todolist CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      # Checkout code
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # Login to DockerHub
+      - name: Login to DockerHub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      # Build Backend Image
+      - name: Build Backend Image
+        run: |
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/todo-backend:latest ./backend
+
+      # Push Backend Image
+      - name: Push Backend Image
+        run: |
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/todo-backend:latest
+
+      # Build Frontend Image
+      - name: Build Frontend Image
+        run: |
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/todo-frontend:latest ./frontend
+
+      # Push Frontend Image
+      - name: Push Frontend Image
+        run: |
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/todo-frontend:latest
+
+      # Deploy Backend to Render
+      - name: Deploy Backend
+        run: curl "$BACKEND_RENDER_HOOK"
+        env:
+          BACKEND_RENDER_HOOK: ${{ secrets.BACKEND_RENDER_HOOK }}
+
+      # Deploy Frontend to Render
+      - name: Deploy Frontend
+        run: curl "$FRONTEND_RENDER_HOOK"
+        env:
+          FRONTEND_RENDER_HOOK: ${{ secrets.FRONTEND_RENDER_HOOK }}
